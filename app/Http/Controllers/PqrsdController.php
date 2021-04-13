@@ -6,8 +6,7 @@ use App\Models\Cliente;
 use App\Models\Pqrsd;
 use App\Models\UserPqrsd;
 use Illuminate\Http\Request;
-
-use App\Mail\respPqrsd;
+use App\Mail\RespuestaPqrsd;
 use Illuminate\Support\Facades\Mail;
 
 class PqrsdController extends Controller
@@ -93,14 +92,20 @@ class PqrsdController extends Controller
     }
 
     public function sendAnswer(Request $request){
-      
-
-        return $request;
-        
-    //   $correo = new respPqrsd;
-    //   $correo->subject("hola");
      
-    //   Mail::to('mplaza005@gmail.com')->send($correo);
+        // dd($request->all());
+        $subject = "es lo que me gusta";
+        $for = "mplaza005@gmail.com";
+        Mail::send('emails.RespuestaPqrsd',$request->all(), function($msj) use($subject,$for){
+            $msj->from("arm@gmail.com","NombreQueApareceráComoEmisor");
+            $msj->subject($subject);
+            $msj->to($for);
+        });
+        return "enviado";
+
+
+
+        // Mail::to('mplaza005@gmail.com')->send(new RespuestaPqrsd());
 
     }
 }

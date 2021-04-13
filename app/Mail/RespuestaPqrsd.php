@@ -5,22 +5,25 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Http\Request;
 use Illuminate\Queue\SerializesModels;
 
 class RespuestaPqrsd extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject = "Re:Solicitud";
+    public $subject = "Mensaje recibido";
+    public $message;
+
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($message)
     {
-        //
+        $this->message = $message;
     }
 
     /**
@@ -28,8 +31,10 @@ class RespuestaPqrsd extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(Request $request)
     {
-        return $this->view('pqrsd.answer');
+        $correo = $request->all(); 
+        
+        return $this->view('pqrsd.answer', compact('correo'));
     }
 }
