@@ -4,7 +4,9 @@
 
 @section('content')
     <section class="container">
-        <h1>Events</h1>
+        <h1>Listado PQRSD</h1>
+
+        <a href="{{route('formulario.create')}}">Crear PQR</a>
 
         <div class="row">
 
@@ -13,12 +15,17 @@
                     <article class="card fl-left">
                         <section class="date">
                             <time datetime="23th feb">
-                                <span>{{ $pqrsd->created_at->format('d')}}</span><span>{{ $pqrsd->created_at->format('m')}}</span>
+                                <span>{{ $pqrsd->created_at->format('d')}}</span><span>{{date("F", strtotime($pqrsd->created_at)) }}</span>
+
+
+                                <!-- $pqrsd->created_at->monthName -->
+
+                                
                             </time>
                         </section>
                         <section class="card-cont">
-                            <small>dj khaled</small>
-                            <h3>live in sydney</h3>
+                            <small>{{ $pqrsd->estado}}</small>
+                            <h3>{{ $pqrsd->tipoPqrsd}}</h3>
                             <div class="even-date">
                                 <i class="fa fa-calendar"></i>
                                 <time>

@@ -18,7 +18,7 @@ class CreatePqrsdsTable extends Migration
             $table->id();
             
             //Datos Cliente
-            $table->text('idCliente');
+            $table->unsignedBigInteger('idCliente')->nullable();
            
             //datos pqrsd
             $table->enum('esAnonima', ['TRUE','FALSE'])->nullable();
@@ -28,6 +28,10 @@ class CreatePqrsdsTable extends Migration
             $table->enum('estado', ['enviado','enProceso','resuelto'])->nullable();
             //
             $table->timestamps();
+
+            //llaves foraneas    
+
+            $table->foreign('idCliente')->references('id')->on('clientes');
 
         });
     }

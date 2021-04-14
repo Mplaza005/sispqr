@@ -7,15 +7,26 @@ use App\Models\Pqrsd;
 use App\Models\UserPqrsd;
 use Illuminate\Http\Request;
 use App\Mail\RespuestaPqrsd;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class PqrsdController extends Controller
 {
     public function index(){
      // Listar las PQRSD
-        $pqrsds =  Pqrsd::orderBy('id', 'desc')-> paginate();
-        return view('pqrsd.ticket', compact('pqrsds'));
-        // return view('pqrsd.ticket');
+        // $pqrsds =  Pqrsd::orderBy('id', 'desc');
+
+        $pqrsds =  DB::table('pqrsds')
+        ->join('clientes', 'pqrsds.id', '=', 'clientes.id')
+        ->select('pqrsds.*', 'clientes.primerNombre', 'clientes.correoElectronico')
+        ->get();
+
+
+        return $pqrsds; 
+        
+        //  return view('pqrsd.ticket', compact('pqrsds'));
+       
+
     }
         
     public function create(){

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Cliente extends Model
 {
     use HasFactory;
+
+    public function pqrsds()
+    {
+        return $this->hasMany(Pqrsd::class);
+    }
 }
