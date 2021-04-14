@@ -12,9 +12,10 @@ use Illuminate\Support\Facades\Mail;
 class PqrsdController extends Controller
 {
     public function index(){
-        //Listar las PQRSD
+     // Listar las PQRSD
         $pqrsds =  Pqrsd::orderBy('id', 'desc')-> paginate();
-        return view('pqrsd.index', compact('pqrsds'));
+        return view('pqrsd.ticket', compact('pqrsds'));
+        // return view('pqrsd.ticket');
     }
         
     public function create(){

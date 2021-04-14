@@ -1,5 +1,8 @@
 @extends('layouts.plantilla')
 
+
+
+
 @section('title','index PQRSD')
 
 @section('content')
