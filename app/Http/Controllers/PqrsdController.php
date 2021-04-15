@@ -11,7 +11,26 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class PqrsdController extends Controller
-{
+{   
+
+    
+    public function index1(){
+        // Sistema Login
+
+        return view('login.form_login');
+
+    }
+
+
+      
+    public function login(Request $request){
+        // Sistema Login
+
+        return "hola";
+
+    }
+
+
     public function index(){
      // Listar las PQRSD
       
@@ -81,10 +100,9 @@ class PqrsdController extends Controller
 
     //funcion para update una PQRSD
     public function update(Request $request, Pqrsd $pqrsd){
+       
         $pqrsd->primerNombre = $request->primerNombre;
-        
         $pqrsd->save();
-        
         return redirect()->route('formulario.show',$pqrsd->id);;
     
     }
@@ -98,27 +116,16 @@ class PqrsdController extends Controller
        
         return view('pqrsd.answer',compact('pqrsd','cliente'));
 
-        // return redirect()->route('formulario.show',$pqrsd->id);;
-    
     }
 
     public function sendAnswer(Request $request){
      
-        // dd($request->all());
-       
-
         $userPqrsd= new UserPqrsd();
-
-        // return $request;
-
         $userPqrsd->idcliente = $request->idCliente;
         $userPqrsd->idpqrsd = $request->idPqrsd;
         $userPqrsd->descEstado = $request->descripcion;
 
-        //  return $userPqrsd;
-
-         $userPqrsd->save();
-
+        $userPqrsd->save();
 
         $subject = "es lo que me gusta";
         $for = "mplaza005@gmail.com";
@@ -128,10 +135,16 @@ class PqrsdController extends Controller
             $msj->to($for);
         });
         return "enviado";
-
-
-
         // Mail::to('mplaza005@gmail.com')->send(new RespuestaPqrsd());
 
     }
+
+    
+
+
+
+
+
+
+
 }

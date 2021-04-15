@@ -23,13 +23,14 @@ body {
     margin: 100px auto
 }
 
-h1 {
+
+/* h1 {
     text-transform: uppercase;
     font-weight: 900;
     border-left: 10px solid #fec500;
     padding-left: 10px;
     margin-bottom: 30px
-}
+} */
 
 .row {
     overflow: hidden

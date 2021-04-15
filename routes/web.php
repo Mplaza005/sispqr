@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PqrsdController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 // Rutas para la gestion de los formularios//
 
+Route::post('login', [PqrsdController::class,'login'])->name('login.login');
+
+Route::get('inicio', [PqrsdController::class,'index1'])->name('login.index1');
 
 Route::get('formularios', [PqrsdController::class,'index'])->name('formulario.index');
 
@@ -32,3 +36,22 @@ Route::put('formularios/{pqrsd}',[PqrsdController::class,'update'])->name('formu
 Route::get('formularios/{pqrsd}',[PqrsdController::class,'answer'])->name('formulario.answer');
 
 Route::post('formularios',[PqrsdController::class,'sendAnswer'])->name('formulario.sendAnswer');
+
+//Login rutas
+
+// Route::post('login',function() {
+
+//     $credentials = request()->only('email','password');
+   
+//    if(Auth::attempt($credentials)) {
+
+//     return 'sesion iniciada';
+
+//    }
+
+//    return 'error en inicio de sesion';
+
+// });
+
+
+

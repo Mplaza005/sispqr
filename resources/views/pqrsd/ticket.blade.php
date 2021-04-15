@@ -4,7 +4,7 @@
 
 @section('content')
     <section class="container">
-        <h1>Listado PQRSD</h1>
+        <h1>lista Pqrsd´s</h1>
        
         <a href="{{route('formulario.create')}}">Crear PQR</a>
 
@@ -40,7 +40,7 @@
                                 {{ $pqrsd->descripcion}}
                                 </p>
                             </div>
-                            <a href="{{route('formulario.answer',$pqrsd->id)}}">hola </a>
+                            <a href="{{route('formulario.answer',$pqrsd->id)}}">Responder</a>
                         </section>
                     </article>
                 </div>
