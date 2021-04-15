@@ -9,6 +9,8 @@ class Pqrsd extends Model
 {
     use HasFactory;
 
+    // protected $dates = ['created_at'];
+
     public function cliente()
     {
         return $this->belongsTo(Cliente::class);

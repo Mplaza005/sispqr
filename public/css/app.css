@@ -116,10 +116,6 @@ h1 {
     font-size: 130%
 }
 
-.row:last-child .card:last-of-type .card-cont h3 {
-    text-decoration: line-through
-}
-
 .card-cont>div {
     display: table-row
 }

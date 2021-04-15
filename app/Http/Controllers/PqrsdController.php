@@ -14,17 +14,16 @@ class PqrsdController extends Controller
 {
     public function index(){
      // Listar las PQRSD
-        // $pqrsds =  Pqrsd::orderBy('id', 'desc');
+      
+     // $pqrsds =  Pqrsd::orderBy('id', 'desc')->get();
 
         $pqrsds =  DB::table('pqrsds')
         ->join('clientes', 'pqrsds.id', '=', 'clientes.id')
-        ->select('pqrsds.*', 'clientes.primerNombre', 'clientes.correoElectronico')
+        ->select('pqrsds.*', 'clientes.primerNombre', 'clientes.segundoNombre', 'clientes.numeroIdentificacion', 'clientes.correoElectronico')
         ->get();
-
-
-        return $pqrsds; 
         
-        //  return view('pqrsd.ticket', compact('pqrsds'));
+        
+        return view('pqrsd.ticket', compact('pqrsds'));
        
 
     }
@@ -106,6 +105,21 @@ class PqrsdController extends Controller
     public function sendAnswer(Request $request){
      
         // dd($request->all());
+       
+
+        $userPqrsd= new UserPqrsd();
+
+        // return $request;
+
+        $userPqrsd->idcliente = $request->idCliente;
+        $userPqrsd->idpqrsd = $request->idPqrsd;
+        $userPqrsd->descEstado = $request->descripcion;
+
+        //  return $userPqrsd;
+
+         $userPqrsd->save();
+
+
         $subject = "es lo que me gusta";
         $for = "mplaza005@gmail.com";
         Mail::send('emails.RespuestaPqrsd',$request->all(), function($msj) use($subject,$for){

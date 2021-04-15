@@ -17,4 +17,4 @@
 <a href="{{route('formulario.index')}}">Volver</a>
 
 {{-- <a href="{{route('formulario.edit',$pqrsd)}}">Editar PQRSD</a> --}}
-.
+
