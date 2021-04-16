@@ -7,34 +7,43 @@ use App\Models\Pqrsd;
 use App\Models\UserPqrsd;
 use Illuminate\Http\Request;
 use App\Mail\RespuestaPqrsd;
+use Illuminate\Auth\Events\Attempting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class PqrsdController extends Controller
 {   
 
     
-    public function index1(){
+    public function index1(Request $request){
         // Sistema Login
-
         return view('login.form_login');
-
     }
 
 
       
     public function login(Request $request){
-        // Sistema Login
+      
+        $credentials =request()->only('email','password');
+        
+        if (Auth::attempt($credentials)){
+            
+             request()->session()->regenerate();
 
-        return "hola";
+            
+            return redirect('formularios');
+        }
 
-    }
+        return redirect('login.login');
+    }    
 
 
     public function index(){
      // Listar las PQRSD
       
-     // $pqrsds =  Pqrsd::orderBy('id', 'desc')->get();
+        // $pqrsds =  Pqrsd::orderBy('id', 'desc')->get();
 
         $pqrsds =  DB::table('pqrsds')
         ->join('clientes', 'pqrsds.id', '=', 'clientes.id')

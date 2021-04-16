@@ -13,6 +13,11 @@
 
 @csrf
     <div class="form-group">
+
+    <h1>Login</h1>
+
+    <pre>{{Auth::user()}}</pre>
+
      <label>User</label>
      <input type="email" name="email" class="form-control"  placeholder="correoelectronico@gmail.com" />
     </div>

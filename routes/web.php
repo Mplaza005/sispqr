@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 // Rutas para la gestion de los formularios//
 
-Route::post('login', [PqrsdController::class,'login'])->name('login.login');
+Route::post('login', [PqrsdController::class,'login'])->name('login.login')->middleware('auth');
 
 Route::get('inicio', [PqrsdController::class,'index1'])->name('login.index1');
 

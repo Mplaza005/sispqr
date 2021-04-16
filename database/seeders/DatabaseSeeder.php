@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 
 use App\Models\Pqrsd;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,7 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-      Pqrsd::factory(50)->create();   
+      // Pqrsd::factory(50)->create();   
      
+      User::factory(1)->create();
     }
 }
