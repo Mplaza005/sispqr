@@ -9,7 +9,7 @@
 <body>
 
 
-<form action="{{route('login.login')}}"  method="POST">
+<form  method="POST">
 
 @csrf
     <div class="form-group">

@@ -17,25 +17,29 @@ use Illuminate\Support\Facades\Route;
 
 // Rutas para la gestion de los formularios//
 
-Route::post('login', [PqrsdController::class,'login'])->name('login.login')->middleware('auth');
 
-Route::get('inicio', [PqrsdController::class,'index1'])->name('login.index1');
 
-Route::get('formularios', [PqrsdController::class,'index'])->name('formulario.index');
+// Route::post('login', [PqrsdController::class,'login'])->name('login.login');
+
+Route::get('login', [PqrsdController::class,'inicio']);
+
+Route::post('login', [PqrsdController::class,'login'])->name('login');
+
+Route::get('formularios', [PqrsdController::class,'index'])->name('formulario.index')->middleware('auth');
 
 Route::get('formularios/create',[PqrsdController::class,'create'])->name('formulario.create');
 
-Route::post('formulario',[PqrsdController::class,'store'])->name('formulario.store');
+// Route::post('formulario',[PqrsdController::class,'store'])->name('formulario.store');
 
-Route::get('hola/{pqrsd}',[PqrsdController::class,'show'])->name('formulario.show');
+// Route::get('hola/{pqrsd}',[PqrsdController::class,'show'])->name('formulario.show');
 
-Route::get('formularios/{pqrsd}/edit',[PqrsdController::class,'edit'])->name('formulario.edit');
+// Route::get('formularios/{pqrsd}/edit',[PqrsdController::class,'edit'])->name('formulario.edit');
 
-Route::put('formularios/{pqrsd}',[PqrsdController::class,'update'])->name('formulario.update');
+// Route::put('formularios/{pqrsd}',[PqrsdController::class,'update'])->name('formulario.update');
 
-Route::get('formularios/{pqrsd}',[PqrsdController::class,'answer'])->name('formulario.answer');
+// Route::get('formularios/{pqrsd}',[PqrsdController::class,'answer'])->name('formulario.answer');
 
-Route::post('formularios',[PqrsdController::class,'sendAnswer'])->name('formulario.sendAnswer');
+// Route::post('formularios',[PqrsdController::class,'sendAnswer'])->name('formulario.sendAnswer');
 
 //Login rutas
 

@@ -17,26 +17,26 @@ class PqrsdController extends Controller
 {   
 
     
-    public function index1(Request $request){
+    public function inicio(){
         // Sistema Login
         return view('login.form_login');
     }
 
-
-      
     public function login(Request $request){
-      
-        $credentials =request()->only('email','password');
-        
-        if (Auth::attempt($credentials)){
-            
-             request()->session()->regenerate();
 
-            
-            return redirect('formularios');
+              
+         $credentials =request()->only('email','password');
+   
+        if (Auth::attempt($credentials)){
+
+            request()->session()->regenerate();
+            return redirect()->route('formulario.index');
+            // return redirect('formulario');
+
         }
 
-        return redirect('login.login');
+        return view('login.form_login');
+
     }    
 
 
@@ -112,7 +112,7 @@ class PqrsdController extends Controller
        
         $pqrsd->primerNombre = $request->primerNombre;
         $pqrsd->save();
-        return redirect()->route('formulario.show',$pqrsd->id);;
+        return redirect()->route('formulario.show',$pqrsd->id);
     
     }
 
