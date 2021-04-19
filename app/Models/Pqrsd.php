@@ -11,6 +11,8 @@ class Pqrsd extends Model
 
     // protected $dates = ['created_at'];
 
+      
+
     public function cliente()
     {
         return $this->belongsTo(Cliente::class);

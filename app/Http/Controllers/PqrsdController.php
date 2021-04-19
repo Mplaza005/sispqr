@@ -46,7 +46,7 @@ class PqrsdController extends Controller
         // $pqrsds =  Pqrsd::orderBy('id', 'desc')->get();
 
         $pqrsds =  DB::table('pqrsds')
-        ->join('clientes', 'pqrsds.id', '=', 'clientes.id')
+        ->join('clientes', 'pqrsds.idCliente', '=', 'clientes.id')
         ->select('pqrsds.*', 'clientes.primerNombre', 'clientes.segundoNombre', 'clientes.numeroIdentificacion', 'clientes.correoElectronico')
         ->get();
         
@@ -63,35 +63,25 @@ class PqrsdController extends Controller
 
     public function store(Request $request){
         // Funcion Para crear otra PQRSD
+   
         $pqrsd = new Pqrsd();
-        $cliente = new Cliente();
-
-        if($request->esAnonima = 'FALSE'){
-            // echo"entro al if";
-            //DATOS DEL CLIENTE       
-            $cliente->primerNombre =$request->primerNombre;
-            $cliente->segundoNombre =$request->segundoNombre;
-            $cliente->primerApellido =$request->primerApellido;
-            $cliente->segundoApellido =$request->segundoApellido;
-            $cliente->tipoDocumento =$request->tipoDocumento;
-            $cliente->numeroIdentificacion=$request->numeroIdentificacion;
-            $cliente->fechaNacimiento=$request->fechaNacimiento;
-            $cliente->genero=$request->genero;
-            $cliente->direccion=$request->direccion;
-            $cliente->correoElectronico=$request->correoElectronico;
-        
-            $cliente->save();
+        if($request->esAnonima == 'FALSE'){
+            
+            //DATOS DEL CLIENTE
+            
+            $cliente = Cliente::create($request->all());      
+            $pqrsd->idCliente = $cliente->id;
         }
+            
         //DATOS PQRSD
-        $pqrsd->idCliente = $cliente->id;
         $pqrsd->esAnonima = $request->esAnonima;
         $pqrsd->tipoPqrsd = $request->tipoPqrsd;
         $pqrsd->descripcion=$request->descripcion;
         $pqrsd->estado='enviado';
-        
         $pqrsd->save();
-
-         return redirect()->route('formulario.show',$pqrsd->id);
+        return redirect()->route('formulario.show',$pqrsd->id);
+        
+      
         
     }
       //funcion para mostrar una PQRSD Pqrsd, se optimizo   
