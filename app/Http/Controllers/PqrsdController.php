@@ -30,7 +30,7 @@ class PqrsdController extends Controller
         if (Auth::attempt($credentials)){
 
             request()->session()->regenerate();
-            return redirect()->route('formulario.index');
+            return redirect()->route('pqrsds.index');
             // return redirect('formulario');
 
         }
@@ -79,7 +79,7 @@ class PqrsdController extends Controller
         $pqrsd->descripcion=$request->descripcion;
         $pqrsd->estado='enviado';
         $pqrsd->save();
-        return redirect()->route('formulario.show',$pqrsd->id);
+        return redirect()->route('pqrsds.show',$pqrsd->id);
         
       
         
@@ -102,7 +102,7 @@ class PqrsdController extends Controller
        
         $pqrsd->primerNombre = $request->primerNombre;
         $pqrsd->save();
-        return redirect()->route('formulario.show',$pqrsd->id);
+        return redirect()->route('pqrsds.show',$pqrsd->id);
     
     }
 

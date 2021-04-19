@@ -6,7 +6,7 @@
     <section class="container">
         <h1>lista Pqrsd´s</h1>
        
-        <a href="{{route('formulario.create')}}">Crear PQR</a>
+        <a href="{{route('pqrsds.create')}}">Crear PQR</a>
 
         <div class="row">
 
@@ -40,7 +40,7 @@
                                 {{ $pqrsd->descripcion}}
                                 </p>
                             </div>
-                            <a href="{{route('formulario.answer',$pqrsd->id)}}">Responder</a>
+                            <a href="{{route('pqrsds.answer',$pqrsd->id)}}">Responder</a>
                         </section>
                     </article>
                 </div>

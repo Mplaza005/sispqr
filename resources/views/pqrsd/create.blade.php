@@ -10,7 +10,7 @@
         
         {{--FORMULARIO --}}
         
-        <form action="{{route('formulario.store')}}"  method="POST">
+        <form action="{{route('pqrsds.store')}}"  method="POST">
 
             @csrf
             <div class="form-row">

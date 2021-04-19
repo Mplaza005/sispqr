@@ -13,7 +13,7 @@
 <p><Strong>Descripcion:</Strong>
     {{$pqrsd->descripcion}}
 
-<form action="{{route('formulario.sendAnswer')}}"  method="POST">
+<form action="{{route('pqrsds.sendAnswer')}}"  method="POST">
 
     @csrf
     <div class="form-row">
@@ -46,7 +46,7 @@
     </div> 
             
     {{--BUTTON DE ENVIAR  --}}
-    <a href="{{route('formulario.index')}}">Volver</a>
+    <a href="{{route('pqrsds.index')}}">Volver</a>
 
     <button class="btn btn-primary mb-3" type="submit">Enviar</button>
 

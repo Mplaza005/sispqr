@@ -14,7 +14,7 @@
 </p>
 {{-- <a href="{{route('formulario.answer',$pqrsd)}}">contestar</a> --}}
 <br>
-<a href="{{route('formulario.index')}}">Volver</a>
+<a href="{{route('pqrsds.index')}}">Volver</a>
 
 {{-- <a href="{{route('formulario.edit',$pqrsd)}}">Editar PQRSD</a> --}}
 
