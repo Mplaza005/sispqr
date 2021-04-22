@@ -43,15 +43,16 @@ class PqrsdController extends Controller
     public function index(){
      // Listar las PQRSD
       
-        // $pqrsds =  Pqrsd::orderBy('id', 'desc')->get();
+         $pqrsds =  Pqrsd::orderBy('id', 'desc')->get();
 
-        $pqrsds =  DB::table('pqrsds')
-        ->join('clientes', 'pqrsds.idCliente', '=', 'clientes.id')
-        ->select('pqrsds.*', 'clientes.primerNombre', 'clientes.segundoNombre', 'clientes.numeroIdentificacion', 'clientes.correoElectronico')
-        ->get();
+        // $pqrsds =  DB::table('pqrsds')
+        // ->join('clientes', 'pqrsds.idCliente', '=', 'clientes.id')
+        // ->select('pqrsds.*', 'clientes.primerNombre', 'clientes.segundoNombre', 'clientes.numeroIdentificacion', 'clientes.correoElectronico')
+        // ->get();
         
+        // return $pqrsds;
         
-        return view('pqrsd.ticket', compact('pqrsds'));
+        return view('pqrsd.listarPqrsds', compact('pqrsds'));
        
 
     }
@@ -69,7 +70,9 @@ class PqrsdController extends Controller
             
             //DATOS DEL CLIENTE
             
-            $cliente = Cliente::create($request->all());      
+            $cliente = Cliente::create($request->all()
+        
+        );      
             $pqrsd->idCliente = $cliente->id;
         }
             
@@ -105,6 +108,12 @@ class PqrsdController extends Controller
         return redirect()->route('pqrsds.show',$pqrsd->id);
     
     }
+
+public function destroy (Pqrsd $pqrsd){
+    $pqrsd->delete();
+    return redirect()->route('pqrsds.index');
+}
+
 
     public function answer(Pqrsd $pqrsd){
         

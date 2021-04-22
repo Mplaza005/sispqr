@@ -42,6 +42,11 @@
                             </div>
                             <a href="{{route('pqrsds.answer',$pqrsd->id)}}">Responder</a>
                         </section>
+                        <form action="{{route('pqrsds.destroy',$pqrsd)}}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit">Eliminar</button>
+                        </form>
                     </article>
                 </div>
             @endforeach

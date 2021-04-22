@@ -23,20 +23,24 @@ class pqrsdFactory extends Factory
     {
         return [
             
-            'primerNombre'=>$this->faker->firstName(),
-            'segundoNombre'=>$this->faker->firstName(),
-            'primerApellido'=>$this->faker->lastName(),
-            'segundoApellido'=>$this->faker->lastName(),
-            'tipoDocumento'=>$this->faker->randomElement(['cedula de Cuidadania', 'cedula de extrangeria','registroCivil','targetaIdentidad']),
-            'numeroIdentificacion'=>$this->faker->buildingNumber(),
-            'fechaNacimiento'=>$this->faker->date(),
-            'genero'=>$this->faker->randomElement(['masculino', 'femenino','otro']),
-            'direccion'=>$this->faker->address(),
-            'correoElectronico'=>$this->faker->email(),
+            // 'primerNombre'=>$this->faker->firstName(),
+            // 'segundoNombre'=>$this->faker->firstName(),
+            // 'primerApellido'=>$this->faker->lastName(),
+            // 'segundoApellido'=>$this->faker->lastName(),
+            // 'tipoDocumento'=>$this->faker->randomElement(['cedula de Cuidadania', 'cedula de extrangeria','registroCivil','targetaIdentidad']),
+            // 'numeroIdentificacion'=>$this->faker->buildingNumber(),
+            // 'fechaNacimiento'=>$this->faker->date(),
+            // 'genero'=>$this->faker->randomElement(['masculino', 'femenino','otro']),
+            // 'direccion'=>$this->faker->address(),
+            // 'correoElectronico'=>$this->faker->email(),
             
+            'esAnonima'=>$this->faker->randomElement(['TRUE','FALSE']),
+            'tipoPqrsd'=>$this->faker->randomElement(['peticion','queja']),
             'descripcion'=>$this->faker->paragraph(),
             'estado'=>$this->faker->randomElement(['Enviado','enProceso','resuelto']),
-            'urlPdf'=>$this->faker->url(),
+            
+           
+            // 'urlPdf'=>$this->faker->url(),
        
         ];
     }
