@@ -13,7 +13,7 @@
     {{$pqrsd->descripcion}}
 </p>
 
-<img width="1000px" src="{{asset('/storage/qwdcceu8jZ1hNmmxKuWSf7H6rSJ8GJ6pvVwCrzYv.png')}}">
+<img width="1000px" src="{{asset('/storage/')}}">
        
 
 {{-- <a href="{{route('formulario.answer',$pqrsd)}}">contestar</a> --}}

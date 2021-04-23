@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class PqrsdController extends Controller
 {   
@@ -64,9 +65,9 @@ class PqrsdController extends Controller
 
     public function store(Request $request){
         // Funcion Para crear otra PQRSD
-       
-        $request->file('adjunto')->store('public');
-       
+        
+    //   return $request->file('adjunto')->store('');
+    
         $pqrsd = new Pqrsd();
         if($request->esAnonima == 'FALSE'){
             
@@ -78,10 +79,21 @@ class PqrsdController extends Controller
         //DATOS PQRSD
         $pqrsd->esAnonima = $request->esAnonima;
         $pqrsd->tipoPqrsd = $request->tipoPqrsd;
-        $pqrsd->descripcion=$request->descripcion;
-        $pqrsd->estado='enviado';
+        $pqrsd->descripcion = $request->descripcion;
+        $pqrsd->urlPdf = $request->file('adjunto')->store('public');
+        $pqrsd->estado = 'enviado';
         $pqrsd->save();
-        return redirect()->route('pqrsds.show',$pqrsd->id);
+
+        $url = Storage::get($pqrsd->urlPdf);
+
+      
+        return redirect($url);
+     
+
+
+
+
+        // return redirect()->route('pqrsds.show',$pqrsd->id);
         
       
         
