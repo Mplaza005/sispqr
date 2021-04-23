@@ -10,7 +10,7 @@
         
         {{--FORMULARIO --}}
         
-        <form action="{{route('pqrsds.store')}}"  method="POST">
+        <form action="{{route('pqrsds.store')}}"  method="POST" enctype="multipart/form-data">
 
             @csrf
             <div class="form-row">
@@ -112,7 +112,7 @@
              </div> 
                 <div class="form-group">
                 <label >Adjuntar archivo PDF</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                <input type="file" name = "adjunto" class="form-control-file" id="exampleFormControlFile1">
              </div> 
 
              <div class="form-group">

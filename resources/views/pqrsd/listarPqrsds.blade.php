@@ -35,7 +35,7 @@
       
 
     </tbody>
-    <tfoot>
+    <!-- <tfoot>
         <tr>
             <th>Id Pqrsd</th>
             <th>esAnomina</th>
@@ -45,7 +45,7 @@
             <th>Responder</th>
             <th>Detalle</th>
         </tr>
-    </tfoot>
+    </tfoot> -->
 </table>
 
 </div>

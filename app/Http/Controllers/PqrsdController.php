@@ -64,15 +64,14 @@ class PqrsdController extends Controller
 
     public function store(Request $request){
         // Funcion Para crear otra PQRSD
-   
+       
+        $request->file('adjunto')->store('public');
+       
         $pqrsd = new Pqrsd();
         if($request->esAnonima == 'FALSE'){
             
             //DATOS DEL CLIENTE
-            
-            $cliente = Cliente::create($request->all()
-        
-        );      
+            $cliente = Cliente::create($request->all());      
             $pqrsd->idCliente = $cliente->id;
         }
             

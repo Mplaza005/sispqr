@@ -12,6 +12,10 @@
 <p><Strong>Descripcion:</Strong>
     {{$pqrsd->descripcion}}
 </p>
+
+<img width="1000px" src="{{asset('/storage/qwdcceu8jZ1hNmmxKuWSf7H6rSJ8GJ6pvVwCrzYv.png')}}">
+       
+
 {{-- <a href="{{route('formulario.answer',$pqrsd)}}">contestar</a> --}}
 <br>
 <a href="{{route('pqrsds.index')}}">Volver</a>
