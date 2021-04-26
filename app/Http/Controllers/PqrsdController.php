@@ -79,36 +79,17 @@ class PqrsdController extends Controller
             $pqrsd->tipoPqrsd = $request->tipoPqrsd;
             $pqrsd->descripcion = $request->descripcion;
             $pqrsd->estado = 'enviado';
-
-            if($request->hasFile("urlPdf")){
             
-                $file=$request->file("urlPdf");
+           
+            return view('pqrsd.show',compact('$pqrsd->id'));
 
-                $nombre = "pdf_".time().".".$file->guessExtension();
-
-                $ruta = public_path("pdf/".$nombre);
-   
-                if($file->guessExtension()=="pdf"){
-                    
-                    copy($file, $ruta);
-                    $pqrsd->urlPdf=$ruta;
-                    $pqrsd->save();
-                    dd('guardado el archivo');
-                    return redirect()->route('pqrsds.show',$pqrsd->id);
-    
-                }else{
-                    dd("NO ES UN PDF");
-                }
-            }
-       
-        
     }
     
     //funcion para mostrar una PQRSD Pqrsd, se optimizo   
     public function show(Pqrsd $pqrsd){
         // $pqrsd = Pqrsd::find($id);
         // $pqrsd;
-         return view('pqrsd.show',compact('pqrsd'));
+        return view('pqrsd.show',compact('pqrsd'));
     }
     //funcion para editar una PQRSD
     public function edit(Pqrsd $pqrsd){

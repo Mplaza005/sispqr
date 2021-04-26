@@ -13,14 +13,16 @@
     {{$pqrsd->descripcion}}
 </p>
 
-{{-- <img width="1000px" src="{{asset('/storage/')}}"> --}}
+{{-- <img width="100px" src="{{asset('$pqrsd->urlPdf')}}">  --}}
+
+<div class="scroller" style="height:500px" data-always-visible="1" data-rail-visible="1" data-rail-color="white" data-handle-color="#A44A1B">
+    <object data="{{  url('$pqrsd->urlPdf') }} }}" type="application/pdf" width="100%" height="100%">
+</div>
        
 
-{{-- <a href="{{route('formulario.answer',$pqrsd)}}">contestar</a> --}}
+<a href="{{route('pqrsds.answer',$pqrsd)}}">contestar</a>
 <br>
 <a href="{{route('pqrsds.index')}}">Volver</a>
 
-
-
-{{-- <a href="{{route('formulario.edit',$pqrsd)}}">Editar PQRSD</a> --}}
+<a href="{{route('pqrsds.edit',$pqrsd)}}">Editar PQRSD</a>
 
