@@ -65,10 +65,8 @@ class PqrsdController extends Controller
 
     public function store(Request $request){
         // Funcion Para crear otra PQRSD
-        
-    //   return $request->file('adjunto')->store('');
-    
         $pqrsd = new Pqrsd();
+   
         if($request->esAnonima == 'FALSE'){
             
             //DATOS DEL CLIENTE
@@ -76,29 +74,37 @@ class PqrsdController extends Controller
             $pqrsd->idCliente = $cliente->id;
         }
             
-        //DATOS PQRSD
-        $pqrsd->esAnonima = $request->esAnonima;
-        $pqrsd->tipoPqrsd = $request->tipoPqrsd;
-        $pqrsd->descripcion = $request->descripcion;
-        $pqrsd->urlPdf = $request->file('adjunto')->store('public');
-        $pqrsd->estado = 'enviado';
-        $pqrsd->save();
+            //DATOS PQRSD
+            $pqrsd->esAnonima = $request->esAnonima;
+            $pqrsd->tipoPqrsd = $request->tipoPqrsd;
+            $pqrsd->descripcion = $request->descripcion;
+            $pqrsd->estado = 'enviado';
 
-        $url = Storage::get($pqrsd->urlPdf);
+            if($request->hasFile("urlPdf")){
+            
+                $file=$request->file("urlPdf");
 
-      
-        return redirect($url);
-     
+                $nombre = "pdf_".time().".".$file->guessExtension();
 
-
-
-
-        // return redirect()->route('pqrsds.show',$pqrsd->id);
-        
-      
+                $ruta = public_path("pdf/".$nombre);
+   
+                if($file->guessExtension()=="pdf"){
+                    
+                    copy($file, $ruta);
+                    $pqrsd->urlPdf=$ruta;
+                    $pqrsd->save();
+                    dd('guardado el archivo');
+                    return redirect()->route('pqrsds.show',$pqrsd->id);
+    
+                }else{
+                    dd("NO ES UN PDF");
+                }
+            }
+       
         
     }
-      //funcion para mostrar una PQRSD Pqrsd, se optimizo   
+    
+    //funcion para mostrar una PQRSD Pqrsd, se optimizo   
     public function show(Pqrsd $pqrsd){
         // $pqrsd = Pqrsd::find($id);
         // $pqrsd;

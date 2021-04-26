@@ -112,10 +112,10 @@
              </div> 
                 <div class="form-group">
                 <label >Adjuntar archivo PDF</label>
-                <input type="file" name = "adjunto" class="form-control-file" id="exampleFormControlFile1">
+                <input type="file" name="urlPdf" class="form-control-file">
              </div> 
 
-             <div class="form-group">
+             {{-- <div class="form-group">
                 <div class="form-check">
                     <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" required>
                     <label class="form-check-label" for="invalidCheck3">Acepta terminos y condiciones</label>
@@ -123,7 +123,7 @@
                         Debe aceptar antes de enviar el formulario.
                     </div>
                 </div>
-             </div> 
+             </div>  --}}
             
             {{--BUTTON DE ENVIAR  --}}
            
