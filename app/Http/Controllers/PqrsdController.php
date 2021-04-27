@@ -66,18 +66,38 @@ class PqrsdController extends Controller
         // Funcion Para crear otra PQRSD
         $pqrsd = new Pqrsd();
 
-        // $imagenes = $request->file('urlPdf')->storeAs('public/imagenes');
-        $nombreArchivo = $request->numeroIdentificacion;
+        // $nombreArchivo = $request->numeroIdentificacion;
 
-        $imagenes = $request->file('urlPdf')->storeAs('public/imagenes', $nombreArchivo );
-
-
-        // $url= Storage::url($imagenes);
+        // $request->file('urlPdf')->storeAs('public/imagenes', $nombreArchivo );
         
-        $pqrsd->urlPdf = $nombreArchivo;
+        // $pqrsd->urlPdf = $nombreArchivo;
+
+
+    if($request->hasFile("urlPdf")){
+            
+        $file=$request->file("urlPdf");
+
+        $nombreArchivo = "pdf_".time().".".$file->guessExtension();
+
+        
+        
+        if($file->guessExtension()=="jpg"){
+            
+           
+            $request->file('urlPdf')->storeAs('public/imagenes', $nombreArchivo );
+            $pqrsd->urlPdf = $nombreArchivo;
+          
+            // $pqrsd->save();
+            // return redirect()->route('pqrsds.show',$pqrsd->id);
+            
+        }else{
+            dd("NO ES UN PDF");
+        }
+    }
+
+
 
         // $prueba = env('URL_RESOURCES', 'hola');
-
         
         if($request->esAnonima == 'FALSE'){
             
@@ -98,14 +118,11 @@ class PqrsdController extends Controller
             //  return view('pqrsd.show',compact('$pqrsd->id'));
 
     }
-    
     //funcion para mostrar una PQRSD Pqrsd, se optimizo   
     public function show(Pqrsd $pqrsd){
         // $pqrsd = Pqrsd::find($id);
         // $pqrsd;
-        
         return view('pqrsd.show',compact('pqrsd'));
-
     }
     //funcion para editar una PQRSD
     public function edit(Pqrsd $pqrsd){

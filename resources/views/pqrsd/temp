@@ -25,3 +25,10 @@
 
 <a href="{{route('pqrsds.edit',$pqrsd)}}">Editar PQRSD</a>
 
+
+
+// $imagenes = $request->file('urlPdf')->storeAs('public/imagenes', $nombreArchivo );
+
+ // $url= Storage::url($imagenes);
+       
+
