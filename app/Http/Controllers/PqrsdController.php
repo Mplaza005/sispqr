@@ -66,7 +66,13 @@ class PqrsdController extends Controller
     public function store(Request $request){
         // Funcion Para crear otra PQRSD
         $pqrsd = new Pqrsd();
-   
+
+        $imagenes = $request->file('urlPdf')->store('public/imagenes');
+
+        $url= Storage::url($imagenes);
+        $pqrsd->urlPdf = $url;
+
+  
         if($request->esAnonima == 'FALSE'){
             
             //DATOS DEL CLIENTE
@@ -79,9 +85,11 @@ class PqrsdController extends Controller
             $pqrsd->tipoPqrsd = $request->tipoPqrsd;
             $pqrsd->descripcion = $request->descripcion;
             $pqrsd->estado = 'enviado';
-            
-           
-            return view('pqrsd.show',compact('$pqrsd->id'));
+
+            $pqrsd->save();
+          
+            return redirect()->route('pqrsds.show',$pqrsd->id);
+            //  return view('pqrsd.show',compact('$pqrsd->id'));
 
     }
     

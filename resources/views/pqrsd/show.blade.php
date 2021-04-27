@@ -13,12 +13,14 @@
     {{$pqrsd->descripcion}}
 </p>
 
-{{-- <img width="100px" src="{{asset('$pqrsd->urlPdf')}}">  --}}
+<p><Strong>Url:</Strong>
+    {{$pqrsd->urlPdf}}
+</p>
 
-<div class="scroller" style="height:500px" data-always-visible="1" data-rail-visible="1" data-rail-color="white" data-handle-color="#A44A1B">
-    <object data="{{  url('$pqrsd->urlPdf') }} }}" type="application/pdf" width="100%" height="100%">
-</div>
-       
+
+<img width="200px" src = "/storage/imagenes/W8D3rDuR6kix5GPTeehLuGTkBHirn5LpQYYz3CEr.jpg"> 
+
+
 
 <a href="{{route('pqrsds.answer',$pqrsd)}}">contestar</a>
 <br>

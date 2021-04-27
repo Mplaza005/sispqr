@@ -10,8 +10,7 @@ class Pqrsd extends Model
     use HasFactory;
 
     // protected $dates = ['created_at'];
-
-      
+    protected $fillable = ['urlPdf'];
 
     public function cliente()
     {
