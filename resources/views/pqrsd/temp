@@ -17,10 +17,11 @@
     {{$pqrsd->urlPdf}}
 </p>
 
-<img  width="100px" src="{{ 'http://localhost/sispqr/public/storage/imagenes/' . $pqrsd->urlPdf }}" />
+<img  width="100px" src="{{ 'http://localhost/sispqr/public/storage/imagenes/' + $pqrsd->urlPdf }}" />
 
 <a href="{{route('pqrsds.answer',$pqrsd)}}">contestar</a>
 <br>
 <a href="{{route('pqrsds.index')}}">Volver</a>
 
 <a href="{{route('pqrsds.edit',$pqrsd)}}">Editar PQRSD</a>
+

@@ -25,9 +25,8 @@ class PqrsdController extends Controller
 
     public function login(Request $request){
 
-              
-         $credentials =request()->only('email','password');
-   
+        $credentials =request()->only('email','password');
+
         if (Auth::attempt($credentials)){
 
             request()->session()->regenerate();
@@ -67,12 +66,19 @@ class PqrsdController extends Controller
         // Funcion Para crear otra PQRSD
         $pqrsd = new Pqrsd();
 
-        $imagenes = $request->file('urlPdf')->store('public/imagenes');
+        // $imagenes = $request->file('urlPdf')->storeAs('public/imagenes');
+        $nombreArchivo = $request->numeroIdentificacion;
 
-        $url= Storage::url($imagenes);
-        $pqrsd->urlPdf = $url;
+        $imagenes = $request->file('urlPdf')->storeAs('public/imagenes', $nombreArchivo );
 
-  
+
+        // $url= Storage::url($imagenes);
+        
+        $pqrsd->urlPdf = $nombreArchivo;
+
+        // $prueba = env('URL_RESOURCES', 'hola');
+
+        
         if($request->esAnonima == 'FALSE'){
             
             //DATOS DEL CLIENTE
@@ -97,7 +103,9 @@ class PqrsdController extends Controller
     public function show(Pqrsd $pqrsd){
         // $pqrsd = Pqrsd::find($id);
         // $pqrsd;
+        
         return view('pqrsd.show',compact('pqrsd'));
+
     }
     //funcion para editar una PQRSD
     public function edit(Pqrsd $pqrsd){
