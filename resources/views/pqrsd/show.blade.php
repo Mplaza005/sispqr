@@ -13,12 +13,12 @@
     {{$pqrsd->descripcion}}
 </p>
 
-<p><Strong>Url:</Strong>
+<p><Strong>Descripcion:</Strong>
     {{$pqrsd->urlPdf}}
 </p>
 
 
-<img width="200px" src = "/storage/imagenes/W8D3rDuR6kix5GPTeehLuGTkBHirn5LpQYYz3CEr.jpg"> 
+<img src = "{{ Storage::url($pqrsd->urlPdf) }}"> 
 
 
 
