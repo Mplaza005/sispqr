@@ -17,10 +17,7 @@
     {{$pqrsd->urlPdf}}
 </p>
 
-
-<img src = "{{ Storage::url($pqrsd->urlPdf) }}"> 
-
-
+<img  width="100px" src="{{ url($pqrsd->urlPdf) }}" alt="" title="" />
 
 <a href="{{route('pqrsds.answer',$pqrsd)}}">contestar</a>
 <br>
