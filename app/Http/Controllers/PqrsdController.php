@@ -66,46 +66,22 @@ class PqrsdController extends Controller
         // Funcion Para crear otra PQRSD
         $pqrsd = new Pqrsd();
 
-        // $nombreArchivo = $request->numeroIdentificacion;
+        $request->validate([
+            'urlPdf'=> 'required|image|max:2048'
+        ]);
 
-        // $request->file('urlPdf')->storeAs('public/imagenes', $nombreArchivo );
-        
-        // $pqrsd->urlPdf = $nombreArchivo;
-
-
-    if($request->hasFile("urlPdf")){
-            
-        $file=$request->file("urlPdf");
-
-        $nombreArchivo = "pdf_".time().".".$file->guessExtension();
-
-        
-        
-        if($file->guessExtension()=="jpg"){
-            
-           
+            $file=$request->file("urlPdf");
+            $nombreArchivo = "pdf_".time().".".$file->guessExtension();
             $request->file('urlPdf')->storeAs('public/imagenes', $nombreArchivo );
             $pqrsd->urlPdf = $nombreArchivo;
-          
-            // $pqrsd->save();
-            // return redirect()->route('pqrsds.show',$pqrsd->id);
             
-        }else{
-            dd("NO ES UN PDF");
-        }
-    }
-
-
-
-        // $prueba = env('URL_RESOURCES', 'hola');
-        
+       
+    
         if($request->esAnonima == 'FALSE'){
-            
             //DATOS DEL CLIENTE
             $cliente = Cliente::create($request->all());      
             $pqrsd->idCliente = $cliente->id;
         }
-            
             //DATOS PQRSD
             $pqrsd->esAnonima = $request->esAnonima;
             $pqrsd->tipoPqrsd = $request->tipoPqrsd;
@@ -115,9 +91,9 @@ class PqrsdController extends Controller
             $pqrsd->save();
           
             return redirect()->route('pqrsds.show',$pqrsd->id);
-            //  return view('pqrsd.show',compact('$pqrsd->id'));
-
+           
     }
+
     //funcion para mostrar una PQRSD Pqrsd, se optimizo   
     public function show(Pqrsd $pqrsd){
         // $pqrsd = Pqrsd::find($id);

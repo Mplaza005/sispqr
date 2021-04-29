@@ -8,7 +8,7 @@
     <div class="container">
         <h2 class="display-4 text-center my-5">Formulario</h2>
         
-        {{--FORMULARIO --}}
+        <!-- FORMULARIO  -->
         
         <form action="{{route('pqrsds.store')}}"  method="POST" enctype="multipart/form-data">
 
@@ -35,7 +35,7 @@
                      </select>
                      </div>
               </div>
-            {{-- DATOS PERSONALES --}}
+             <!-- DATOS PERSONALES  -->
 
              <h2 class="display-7 text-lef my-3">Datos Personales</h2> 
             
@@ -80,7 +80,7 @@
                     <input type="phone" name="fechaNacimiento" class="form-control" id="inputEmail4" placeholder="año-mes-dia">
              </div>
 
-             {{-- SELECT GENERO --}}
+             <!-- SELECT GENERO  -->
 
              <div class="form-group col-md-6">
                     <label>Genero</label>
@@ -107,15 +107,16 @@
 
              </div>
 
-                {{--SECCION DE ADJUNTAR ARCHIVOS--}}
+                <!-- SECCION DE ADJUNTAR ARCHIVOS -->
 
              </div> 
                 <div class="form-group">
                 <label >Adjuntar archivo PDF</label>
-                <input type="file" name="urlPdf" class="form-control-file">
+                <input type="file" name="urlPdf" class="form-control-file" accept="image/*">
              </div> 
-
-             {{-- <div class="form-group">
+       
+       <!-- 
+              <div class="form-group">
                 <div class="form-check">
                     <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" required>
                     <label class="form-check-label" for="invalidCheck3">Acepta terminos y condiciones</label>
@@ -123,9 +124,9 @@
                         Debe aceptar antes de enviar el formulario.
                     </div>
                 </div>
-             </div>  --}}
+             </div>  -->
             
-            {{--BUTTON DE ENVIAR  --}}
+       <!-- BUTTON DE ENVIAR  -->
            
             <button class="btn btn-primary mb-3" type="submit">Enviar</button>
         
