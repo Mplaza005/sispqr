@@ -63,19 +63,23 @@ class PqrsdController extends Controller
     }
 
     public function store(Request $request){
+        
         // Funcion Para crear otra PQRSD
         $pqrsd = new Pqrsd();
 
         $request->validate([
-            'urlPdf'=> 'required|image|max:2048'
+            'urlPdf'=> 'required|image|max:2048',
+            'esAnonima'=>'required',
+            'tipoPqrsd'=>'required',
+            'email'=>'required|',
+            'descripcion'=>'required|',
+           
         ]);
 
             $file=$request->file("urlPdf");
             $nombreArchivo = "pdf_".time().".".$file->guessExtension();
             $request->file('urlPdf')->storeAs('public/imagenes', $nombreArchivo );
             $pqrsd->urlPdf = $nombreArchivo;
-            
-       
     
         if($request->esAnonima == 'FALSE'){
             //DATOS DEL CLIENTE
@@ -87,7 +91,6 @@ class PqrsdController extends Controller
             $pqrsd->tipoPqrsd = $request->tipoPqrsd;
             $pqrsd->descripcion = $request->descripcion;
             $pqrsd->estado = 'enviado';
-
             $pqrsd->save();
           
             return redirect()->route('pqrsds.show',$pqrsd->id);
