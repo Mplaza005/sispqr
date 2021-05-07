@@ -45,9 +45,20 @@ Route::delete('pqrsds/{pqrsd}',[PqrsdController::class,'destroy'])->name('pqrsds
 
 
 
-Route::get('formularios/{pqrsd}',[PqrsdController::class,'answer'])->name('pqrsds.answer');
+// Route::get('pqrsds/{pqrsd}',[PqrsdController::class,'answer'])->name('pqrsds.answer');
 
-Route::post('formularios',[PqrsdController::class,'sendAnswer'])->name('pqrsds.sendAnswer');
+// Route::post('pqrsds',[PqrsdController::class,'sendAnswer'])->name('pqrsds.sendAnswer');
+
+Route::post('pqrsds/{pqrsd}',[PqrsdController::class,'viewPdf'])->name('pqrsds.viewPdf');
+
+
+
+
+
+
+
+
+
 
 //Login rutas
 

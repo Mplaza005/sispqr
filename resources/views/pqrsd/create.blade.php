@@ -83,7 +83,7 @@
                     
              <div class="form-group col-md-6">
                     <label>Fecha de nacimiento</label>
-                    <input type="Date" name="fechaNacimiento" class="form-control" id="inputEmail4" placeholder="año-mes-dia">
+                    <input type="Date" name="fechaNacimiento" class="form-control " class="datepicker" data-date-format="mm/dd/yyyy" >
              </div>
 
              <!-- SELECT GENERO  -->
@@ -104,8 +104,8 @@
                
              <div class="form-group col-md-6">
                     <label>Correo electronico</label>
-                    <input type="email" class="form-control" name="correoElectronico" placeholder="Ejemplo: pepe@gmail.com">
-                    @error('email')
+                    <input type="email" class="form-control" name="correoElectronico" value=""placeholder="Ejemplo: pepe@gmail.com">
+                    @error('correoElectronico')
                     <small class="text-danger">{{$message}}</small>
                     @enderror
              </div> 
@@ -124,7 +124,7 @@
              </div> 
                 <div class="form-group">
                 <label >Adjuntar archivo PDF</label>
-                <input type="file" name="urlPdf" class="form-control-file" accept="image/*">
+                <input type="file" name="urlPdf" class="form-control-file" accept="pdf/*">
              @error('urlPdf')
               <small class="text-danger">{{$message}}</small>
              @enderror

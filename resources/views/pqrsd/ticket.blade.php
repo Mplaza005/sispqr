@@ -4,21 +4,17 @@
 
 @section('content')
     <section class="container">
-        <h1>lista Pqrsd´s</h1>
+        <h1>Pqrsd</h1>
        
-        <a href="{{route('pqrsds.create')}}">Crear PQR</a>
-
+      
         <div class="row">
 
-            @foreach ($pqrsds as $pqrsd)
+         
                 <div class=" col-md-6 mb-2">
                     <article class="card fl-left">
                         <section class="date">
                             <time datetime="23th feb">
                               <span>{{ Carbon\Carbon::parse($pqrsd->created_at)->format('d')}}</span><span>{{date("F", strtotime($pqrsd->created_at)) }}</span>
-
-
-                                <!-- $pqrsd->created_at->monthName -->
 
                                 
                             </time>
@@ -49,7 +45,7 @@
                         </form>
                     </article>
                 </div>
-            @endforeach
+           
         </div>
     </section>
 

@@ -68,11 +68,11 @@ class PqrsdController extends Controller
         $pqrsd = new Pqrsd();
 
         $request->validate([
-            'urlPdf'=> 'required|image|max:2048',
+            'urlPdf'=> 'required|mimes:pdf|max:2048',
             'esAnonima'=>'required',
             'tipoPqrsd'=>'required',
-            'email'=>'required|',
-            'descripcion'=>'required|',
+            'correoElectronico'=>'required',
+            'descripcion'=>'required',
            
         ]);
 
@@ -92,7 +92,8 @@ class PqrsdController extends Controller
             $pqrsd->descripcion = $request->descripcion;
             $pqrsd->estado = 'enviado';
             $pqrsd->save();
-          
+
+            // return view('pqrsd.ticket',compact('pqrsd'));
             return redirect()->route('pqrsds.show',$pqrsd->id);
            
     }
