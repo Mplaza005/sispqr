@@ -18,22 +18,18 @@
         </tr>
     </thead>
     <tbody>
-
-    @foreach ($pqrsds as $pqrsd)
-        <tr>
-            <td>{{$pqrsd->id}}</td>
-            <td>{{$pqrsd->esAnonima}}</td>
-            <td>{{$pqrsd->tipoPqrsd}}</td>
-            <td>{{$pqrsd->estado}}</td>
-            <td>{{$pqrsd->created_at->diffForHumans()}}</td>
-            <td><a href="{{route('pqrsds.answer',$pqrsd->id)}}">responder </a></td>
-            <td><a href="{{route('pqrsds.show',$pqrsd->id)}}">Detalle</a></td>
-            
-        </tr>
-    @endforeach
-      
-      
-
+      @foreach ($pqrsds as $pqrsd)
+          <tr>
+              <td>{{$pqrsd->id}}</td>
+              <td>{{$pqrsd->esAnonima}}</td>
+              <td>{{$pqrsd->tipoPqrsd}}</td>
+              <td>{{$pqrsd->estado}}</td>
+              <td>{{$pqrsd->created_at->diffForHumans()}}</td>
+              <td><a href="{{route('pqrsds.answer',$pqrsd->id)}}">responder </a></td>
+              <td><a href="{{route('pqrsds.show',$pqrsd->id)}}">Detalle</a></td>
+              
+          </tr>
+      @endforeach
     </tbody>
     <!-- <tfoot>
         <tr>

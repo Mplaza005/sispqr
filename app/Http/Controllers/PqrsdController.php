@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Storage;
 class PqrsdController extends Controller
 {   
 
-    
     public function inicio(){
         // Sistema Login
         return view('login.form_login');
@@ -61,21 +60,23 @@ class PqrsdController extends Controller
         //Formulario creacion PQRSD
         return view('pqrsd.create');
     }
-
+    //Store
     public function store(Request $request){
-        
-        // Funcion Para crear otra PQRSD
-        $pqrsd = new Pqrsd();
+      
+        $cliente = new Cliente();
 
         $request->validate([
-            'urlPdf'=> 'required|mimes:pdf|max:2048',
             'esAnonima'=>'required',
             'tipoPqrsd'=>'required',
+            'tipoPersona'=>'required',
             'correoElectronico'=>'required',
             'descripcion'=>'required',
-           
+            'urlPdf'=> 'required|mimes:pdf|max:2048',
         ]);
-
+            //Crear una Pqrsd
+            $pqrsd = Pqrsd::create($request->all());
+            $pqrsd->estado = 'enviado';
+            //ADJUNTAR EL PDF
             $file=$request->file("urlPdf");
             $nombreArchivo = "pdf_".time().".".$file->guessExtension();
             $request->file('urlPdf')->storeAs('public/imagenes', $nombreArchivo );
@@ -85,33 +86,35 @@ class PqrsdController extends Controller
             //DATOS DEL CLIENTE
             $cliente = Cliente::create($request->all());      
             $pqrsd->idCliente = $cliente->id;
+
         }
-            //DATOS PQRSD
-            $pqrsd->esAnonima = $request->esAnonima;
-            $pqrsd->tipoPqrsd = $request->tipoPqrsd;
-            $pqrsd->descripcion = $request->descripcion;
-            $pqrsd->estado = 'enviado';
             $pqrsd->save();
-
-            // return view('pqrsd.ticket',compact('pqrsd'));
-            return redirect()->route('pqrsds.show',$pqrsd->id);
-           
+        
+            return view('pqrsd.show',compact('pqrsd','cliente'));
+            
     }
 
-    //funcion para mostrar una PQRSD Pqrsd, se optimizo   
+    //Show
     public function show(Pqrsd $pqrsd){
-        // $pqrsd = Pqrsd::find($id);
-        // $pqrsd;
-        return view('pqrsd.show',compact('pqrsd'));
+        
+        $cliente = new Cliente();
+        $temp = new Cliente();
+       
+        if($temp=Cliente::find($pqrsd->idCliente)){
+            $cliente=$temp;
+             return view('pqrsd.show',compact('pqrsd','cliente'));
+        }
+       
+        return view('pqrsd.show',compact('pqrsd','cliente'));
     }
-    //funcion para editar una PQRSD
+
+    //Edit
     public function edit(Pqrsd $pqrsd){
         // $pqrsd = Pqrsd::find($id);
         // $pqrsd;
         return view('pqrsd.edit',compact('pqrsd'));
     }
-
-    //funcion para update una PQRSD
+    //Update
     public function update(Request $request, Pqrsd $pqrsd){
        
         $pqrsd->primerNombre = $request->primerNombre;
@@ -119,11 +122,11 @@ class PqrsdController extends Controller
         return redirect()->route('pqrsds.show',$pqrsd->id);
     
     }
-
-public function destroy (Pqrsd $pqrsd){
-    $pqrsd->delete();
-    return redirect()->route('pqrsds.index');
-}
+    //Destroy
+    public function destroy (Pqrsd $pqrsd){
+        $pqrsd->delete();
+        return redirect()->route('pqrsds.index');
+    }
 
 
     public function answer(Pqrsd $pqrsd){

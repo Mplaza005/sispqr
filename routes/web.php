@@ -27,8 +27,6 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('formularios', [PqrsdController::class,'index'])->name('formulario.index')->middleware('auth');
 
-
-
 Route::get('listarPqrsds', [PqrsdController::class,'index'])->name('pqrsds.index');
 
 Route::get('pqrsds/create',[PqrsdController::class,'create'])->name('pqrsds.create');
@@ -45,11 +43,11 @@ Route::delete('pqrsds/{pqrsd}',[PqrsdController::class,'destroy'])->name('pqrsds
 
 
 
-// Route::get('pqrsds/{pqrsd}',[PqrsdController::class,'answer'])->name('pqrsds.answer');
+Route::get('pqrsd/{pqrsd}',[PqrsdController::class,'answer'])->name('pqrsds.answer');
 
-// Route::post('pqrsds',[PqrsdController::class,'sendAnswer'])->name('pqrsds.sendAnswer');
+Route::post('pqrsd',[PqrsdController::class,'sendAnswer'])->name('pqrsds.sendAnswer');
 
-Route::post('pqrsds/{pqrsd}',[PqrsdController::class,'viewPdf'])->name('pqrsds.viewPdf');
+// Route::post('pqrsds/{pqrsd}',[PqrsdController::class,'viewPdf'])->name('pqrsds.viewPdf');
 
 
 

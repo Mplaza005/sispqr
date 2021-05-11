@@ -8,9 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Pqrsd extends Model
 {
     use HasFactory;
-
     // protected $dates = ['created_at'];
-    protected $fillable = ['urlPdf'];
+
+    protected $fillable = [
+    'correoElectronico',
+    'esAnonima',
+    'tipoPqrsd',
+    'tipoPersona',
+    'descripcion',
+    // 'estado',
+    //'urlPdf',
+    ];
+
+    protected $guarded = ['idCliente','urlPdf','estado'];
 
     public function cliente()
     {

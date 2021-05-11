@@ -19,9 +19,11 @@ class CreatePqrsdsTable extends Migration
             
             //Datos Cliente
             $table->unsignedBigInteger('idCliente')->nullable();
+            $table->string('correoElectronico')->nullable();
             //datos pqrsd
             $table->enum('esAnonima', ['TRUE','FALSE'])->nullable();
             $table->enum('tipoPqrsd', ['peticion','queja','reclamo','solicitud','denuncia'])->nullable();
+            $table->enum('tipoPersona', ['natural','juridica','apoderado','ninos_ninas_adolecentes'])->nullable();
             $table->text('descripcion')->nullable();
             $table->string('urlPdf')->nullable();
             $table->enum('estado', ['enviado','enProceso','resuelto'])->nullable();

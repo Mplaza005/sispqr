@@ -35,3 +35,51 @@
         
 
         @if($errors->any()) {{ implode('', $errors->all('<div>:message</div>')) }} @endif
+
+
+
+
+
+
+        <form action="{{route('pqrsds.destroy',$pqrsd)}}" method="POST">
+         @csrf
+         @method('delete')
+         <button type="submit">Eliminar</button>
+        </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {{-- <h1>Su PQRSD ha sido ingreseda exitosamente</h1>
+<h4>Id Pqrsd:{{$pqrsd->id}}</h4>
+<h4>Id Cliente:{{$pqrsd->idCliente}}</h4>
+<h4>Correo Electronico:{{$pqrsd->correoElectronico}}</h4>
+<p><Strong>Descripcion:</Strong>
+    {{$pqrsd->descripcion}}
+</p>
+
+<p><Strong>Archivo adjunto:</Strong>
+    {{$pqrsd->urlPdf}}
+</p> --}}
+
+{{-- <iframe width="400" height="400" src="{{'http://localhost/sispqr/public/storage/imagenes/'}}" frameborder="0"></iframe> --}}
+
+{{-- <iframe src="{{ 'http://localhost/sispqr/public/storage/imagenes/' . $pqrsd->urlPdf }}"  frameborder="0"></iframe> --}}
+
+ {{-- <img  width="100px" src="{{ 'http://localhost/sispqr/public/storage/imagenes/' . $pqrsd->urlPdf }}" />  --}}
+
+{{-- <a href="{{route('pqrsds.answer',$pqrsd)}}">contestar</a>
+<br>
+<a href="{{route('pqrsds.index')}}">Volver</a>
+
+<a href="{{route('pqrsds.edit',$pqrsd)}}">Editar PQRSD</a> --}}
+

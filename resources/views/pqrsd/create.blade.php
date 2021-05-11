@@ -14,8 +14,8 @@
 
             @csrf
             <div class="form-row">
-                 <div class="form-group col-md-6">
-                     <label>Selecione si su peticion es anonima o no anonima</label>
+                 <div class="form-group col-md-4">
+                     <label>Anonima o no anonima</label>
                      <select name="esAnonima" class="form-control">
                        <option selected value="">Selecione una opcion</option>
                        <option value="TRUE">Anonima</option>
@@ -26,11 +26,11 @@
                      @enderror
                  </div>
 
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-4">
                      <label>Tipo PQRSD</label>
                      <select name="tipoPqrsd" class="form-control">
                         <option selected value="">Selecione una opcion</option>
-                        <option value="peticion")>Peticion</option>
+                        <option value="peticion">Peticion</option>
                         <option value="queja">Queja</option>
                         <option value="reclamo">Reclamo</option>
                         <option value="solicitud">Solicitud</option>
@@ -40,6 +40,21 @@
                        <small class="text-danger">{{$message}}</small>
                      @enderror
                   </div>
+
+                  <div class="form-group col-md-4">
+                     <label>Tipo Persona</label>
+                     <select name="tipoPersona" class="form-control">
+                        <option selected value="">Selecione una opcion</option>
+                        <option value="natural">Natural</option>
+                        <option value="juridica">Juridica</option>
+                        <option value="apoderado">Apoderado</option>
+                        <option value="ninos_ninas_adolecentes">niños, niñas, adolecentes</option>
+                      </select>
+                     @error('tipoPersona')
+                       <small class="text-danger">{{$message}}</small>
+                     @enderror
+                  </div>
+              
               </div>
              <!-- DATOS PERSONALES  -->
 
@@ -49,21 +64,21 @@
 
              <div class="form-group col-md-6"> 
                     <label>Primer nombre</label>
-                    <input name="primerNombre" type="text" class="form-control"  placeholder="Ejemplo: Juan">
+                    <input name="primerNombre" type="text" class="form-control" value="{{old ('primerNombre')}}"  placeholder="Ejemplo: Juan">
              </div>  
            
              <div class="form-group col-md-6">
                     <label>Segundo nombre</label>
-                    <input name="segundoNombre"type="text" class="form-control" id=" " placeholder="Ejemplo: Carlos">
+                    <input name="segundoNombre"type="text" class="form-control" value="{{old ('segundoNombre')}}" placeholder="Ejemplo: Carlos">
              </div>  
              <div class="form-group col-md-6">
                     <label>Primer apellido</label>
-                    <input name="primerApellido"type="text" class="form-control" id=" " placeholder="Ejemplo: Velez">
+                    <input name="primerApellido"type="text" class="form-control" value="{{old ('primerApellido')}}" placeholder="Ejemplo: Velez">
              </div>    
             
              <div class="form-group col-md-6">
                     <label>Segundo apellido</label>
-                    <input name="segundoApellido"type="text" class="form-control" id=" " placeholder="Ejemplo: Posada ">
+                    <input name="segundoApellido"type="text" class="form-control" value="{{old ('segundoApellido')}}" placeholder="Ejemplo: Posada ">
              </div> 
  
              <div class="form-group col-md-6">
@@ -78,7 +93,7 @@
 
              <div class="form-group col-md-6">
                     <label>Número Identificacion</label>
-                    <input type="number" name="numeroIdentificacion" class="form-control" id=" " placeholder="Numero identificacion">
+                    <input type="number" name="numeroIdentificacion" class="form-control" value="{{old ('numeroIdentificacion')}}" placeholder="Numero identificacion">
              </div>
                     
              <div class="form-group col-md-6">
@@ -99,12 +114,12 @@
              
              <div class="form-group col-md-6">
                     <label>Dirección</label>
-                    <input type="text" class="form-control" name="direccion" placeholder="Cra 15 # 20n-51 ">
+                    <input type="text" class="form-control" name="direccion" value = "{{old ('direccion')}}"  placeholder="Cra 15 # 20n-51 ">
               </div>
                
              <div class="form-group col-md-6">
                     <label>Correo electronico</label>
-                    <input type="email" class="form-control" name="correoElectronico" value=""placeholder="Ejemplo: pepe@gmail.com">
+                    <input type="email" class="form-control" name="correoElectronico" value="{{old ('email')}}"placeholder="Ejemplo: pepe@gmail.com">
                     @error('correoElectronico')
                     <small class="text-danger">{{$message}}</small>
                     @enderror
@@ -112,7 +127,7 @@
 
              <div class="form-group col-md-6">
                     <label>Descripcion Solicitud</label>
-                    <textarea type="textarea" class="form-control" name="descripcion"> </textarea>
+                    <textarea type="textarea" class="form-control" name="descripcion">{{old ('descripcion')}}</textarea>
                     @error('descripcion')
                     <small class="text-danger">{{$message}}</small>
                     @enderror

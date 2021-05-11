@@ -26,7 +26,7 @@ class CreateClientesTable extends Migration
             $table->date('fechaNacimiento')->nullable();
             $table->enum('genero', ['masculino', 'femenino','otro'])->nullable();
             $table->char('direccion',255);
-            $table->string('correoElectronico');
+            
 
 
             $table->timestamps();
