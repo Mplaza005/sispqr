@@ -27,6 +27,7 @@
               <td>{{$pqrsd->created_at->diffForHumans()}}</td>
               <td><a href="{{route('pqrsds.answer',$pqrsd->id)}}">responder </a></td>
               <td><a href="{{route('pqrsds.show',$pqrsd->id)}}">Detalle</a></td>
+              <td><a href="{{route('pqrsds.edit',$pqrsd->id)}}">Editar</a></td>
               
           </tr>
       @endforeach

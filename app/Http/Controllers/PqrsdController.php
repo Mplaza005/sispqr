@@ -2,41 +2,44 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Cliente;
 use App\Models\Pqrsd;
 use App\Models\UserPqrsd;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StorePqrsd;
 use App\Mail\RespuestaPqrsd;
 use Illuminate\Auth\Events\Attempting;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+
 
 class PqrsdController extends Controller
 {   
 
-    public function inicio(){
-        // Sistema Login
-        return view('login.form_login');
-    }
+    // public function inicio(){
+    //     // Sistema Login
+    //     return view('login.form_login');
+    // }
 
-    public function login(Request $request){
+    // public function login(Request $request){
 
-        $credentials =request()->only('email','password');
+    //     $credentials =request()->only('email','password');
 
-        if (Auth::attempt($credentials)){
+    //     if (Auth::attempt($credentials)){
 
-            request()->session()->regenerate();
-            return redirect()->route('pqrsds.index');
-            // return redirect('formulario');
+    //         request()->session()->regenerate();
+    //         return redirect()->route('pqrsds.index');
+    //         // return redirect('formulario');
 
-        }
+    //     }
 
-        return view('login.form_login');
+    //     return view('login.form_login');
 
-    }    
+    // }    
 
 
     public function index(){
@@ -51,7 +54,7 @@ class PqrsdController extends Controller
         
         // return $pqrsds;
         
-        return view('pqrsd.listarPqrsds', compact('pqrsds'));
+         return view('pqrsd.listarPqrsds', compact('pqrsds'));
        
 
     }
@@ -61,18 +64,11 @@ class PqrsdController extends Controller
         return view('pqrsd.create');
     }
     //Store
-    public function store(Request $request){
+    public function store(StorePqrsd $request){
       
         $cliente = new Cliente();
 
-        $request->validate([
-            'esAnonima'=>'required',
-            'tipoPqrsd'=>'required',
-            'tipoPersona'=>'required',
-            'correoElectronico'=>'required',
-            'descripcion'=>'required',
-            'urlPdf'=> 'required|mimes:pdf|max:2048',
-        ]);
+    
             //Crear una Pqrsd
             $pqrsd = Pqrsd::create($request->all());
             $pqrsd->estado = 'enviado';
@@ -97,28 +93,32 @@ class PqrsdController extends Controller
     //Show
     public function show(Pqrsd $pqrsd){
         
-        $cliente = new Cliente();
-        $temp = new Cliente();
-       
         if($temp=Cliente::find($pqrsd->idCliente)){
             $cliente=$temp;
              return view('pqrsd.show',compact('pqrsd','cliente'));
         }
-       
+        $cliente = new Cliente();
         return view('pqrsd.show',compact('pqrsd','cliente'));
     }
 
     //Edit
     public function edit(Pqrsd $pqrsd){
-        // $pqrsd = Pqrsd::find($id);
-        // $pqrsd;
-        return view('pqrsd.edit',compact('pqrsd'));
+        
+        if($temp=Cliente::find($pqrsd->idCliente)){
+            $cliente=$temp;
+             return view('pqrsd.edit',compact('pqrsd','cliente'));
+        }
+        $cliente = new Cliente();
+        return view('pqrsd.edit',compact('pqrsd','cliente'));
+
     }
     //Update
     public function update(Request $request, Pqrsd $pqrsd){
        
         $pqrsd->primerNombre = $request->primerNombre;
         $pqrsd->save();
+        
+        
         return redirect()->route('pqrsds.show',$pqrsd->id);
     
     }
@@ -130,14 +130,16 @@ class PqrsdController extends Controller
 
 
     public function answer(Pqrsd $pqrsd){
-        
+        //por optimizar
         $userPqrsd = new UserPqrsd();
-        $cliente = new Cliente();
-        $id=$pqrsd->idCliente;
-        $cliente = Cliente::find($id);
-       
-        return view('pqrsd.answer',compact('pqrsd','cliente'));
+        
+        if($cliente=Cliente::find($pqrsd->idCliente))
+        {
+         return view('pqrsd.answer',compact('pqrsd','cliente'));
+        }
 
+        $cliente = new Cliente();
+        return view('pqrsd.answer',compact('pqrsd','cliente'));
     }
 
     public function sendAnswer(Request $request){

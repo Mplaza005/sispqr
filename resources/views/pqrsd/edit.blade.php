@@ -10,7 +10,7 @@
         
         {{--FORMULARIO --}}
         
-        <form action="{{route('formulario.update', $pqrsd)}}"  method="POST">
+        <form action="{{route('pqrsds.update', $pqrsd)}}"  method="POST">
 
             @csrf
             @method('put')
@@ -22,9 +22,13 @@
              <div class="form-row"> 
 
              <div class="form-group col-md-6"> 
-                    <label>Primer nombre</label>
-                    <input name="primerNombre" type="text" class="form-control" value="{{$pqrsd->primerNombre}}" placeholder="Ejemplo: Juan">
-             </div>  
+               <label>Primer nombre</label>
+               <input name="primerNombre" type="text" class="form-control" value="{{old('primernombre',$cliente->primerNombre) }}">
+             </div> 
+             
+             @error('primerNombre')
+             <small class="text-danger">{{$message}}</small>
+             @enderror 
            
              <div class="form-group col-md-6">
                     <label>Segundo nombre</label>

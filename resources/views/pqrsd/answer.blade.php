@@ -31,7 +31,7 @@
 
         <div class="form-group col-md-6">
             <label>Correo cliente</label>
-            <input name="correoElectronico"type="text" class="form-control" value="{{$cliente->correoElectronico}}"  placeholder=" ">
+            <input name="correoElectronico"type="text" class="form-control" value="{{$pqrsd->correoElectronico}}"  placeholder=" ">
        </div>
         
         <div class="form-group col-md-6">

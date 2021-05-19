@@ -16,42 +16,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Rutas para la gestion de los formularios//
-
-
-
 // Route::post('login', [PqrsdController::class,'login'])->name('login.login');
-
 // Route::get('login', [PqrsdController::class,'inicio']);
-
 // Route::post('login', [PqrsdController::class,'login'])->name('login');
-
 // Route::get('formularios', [PqrsdController::class,'index'])->name('formulario.index')->middleware('auth');
 
-Route::get('listarPqrsds', [PqrsdController::class,'index'])->name('pqrsds.index');
+Route::resource('pqrsds', PqrsdController::class);
 
-Route::get('pqrsds/create',[PqrsdController::class,'create'])->name('pqrsds.create');
+//Rutas para contestar pqrsd
 
-Route::post('pqrsds',[PqrsdController::class,'store'])->name('pqrsds.store');
-
-Route::get('pqrsds/{pqrsd}',[PqrsdController::class,'show'])->name('pqrsds.show');
-
-Route::get('pqrsds/{pqrsd}/edit',[PqrsdController::class,'edit'])->name('pqrsds.edit');
-
-Route::put('pqrsds/{pqrsd}',[PqrsdController::class,'update'])->name('pqrsds.update');
-
-Route::delete('pqrsds/{pqrsd}',[PqrsdController::class,'destroy'])->name('pqrsds.destroy');
-
-
-
-Route::get('pqrsd/{pqrsd}',[PqrsdController::class,'answer'])->name('pqrsds.answer');
-
-Route::post('pqrsd',[PqrsdController::class,'sendAnswer'])->name('pqrsds.sendAnswer');
-
-// Route::post('pqrsds/{pqrsd}',[PqrsdController::class,'viewPdf'])->name('pqrsds.viewPdf');
-
-
-
-
+ Route::get('pqrsd/{pqrsd}',[PqrsdController::class,'answer'])->name('pqrsds.answer');
+ Route::post('pqrsd',[PqrsdController::class,'sendAnswer'])->name('pqrsds.sendAnswer');
 
 
 
