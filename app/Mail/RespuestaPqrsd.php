@@ -12,8 +12,8 @@ class RespuestaPqrsd extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject = "Mensaje recibido";
-    public $message;
+    // public $subject = "Mensaje recibido";
+    // public $message;
 
 
     /**
@@ -23,7 +23,7 @@ class RespuestaPqrsd extends Mailable
      */
     public function __construct($message)
     {
-        $this->message = $message;
+        // $this->message = $message;
     }
 
     /**
@@ -33,8 +33,9 @@ class RespuestaPqrsd extends Mailable
      */
     public function build(Request $request)
     {
-        $correo = $request->all(); 
         
-        return $this->view('pqrsd.answer', compact('correo'));
+        // $correo = $request->all(); 
+        
+        // return $this->view('pqrsd.answer', compact('correo'));
     }
 }

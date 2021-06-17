@@ -6,12 +6,12 @@
 
 <h5>Contestar Solicitud PQRSD</h5>
 
-<h4>Id Pqrsd:{{$pqrsd->id}}</h4>
+{{-- <h4>Id Pqrsd:{{$pqrsd->id}}</h4>
 
 <h4>IdCliente:{{$pqrsd->idCliente}}</h4>
 
 <p><Strong>Descripcion:</Strong>
-    {{$pqrsd->descripcion}}
+    {{$pqrsd->descripcion}} --}}
 
 <form action="{{route('pqrsds.sendAnswer')}}"  method="POST">
 
@@ -31,12 +31,12 @@
 
         <div class="form-group col-md-6">
             <label>Correo cliente</label>
-            <input name="correoElectronico"type="text" class="form-control" value="{{$pqrsd->correoElectronico}}"  placeholder=" ">
+            <input name="correo"type="text" class="form-control" value="{{$pqrsd->correoElectronico}}"  placeholder=" ">
        </div>
         
         <div class="form-group col-md-6">
             <label>Contestacion</label>
-            <textarea type="textarea" class="form-control" name="descripcion"> </textarea>
+            <textarea type="textarea" class="form-control" name="descEstado"> </textarea>
 
         </div>
 

@@ -9,9 +9,13 @@
 <body>
 
     <h2>Descripción:</h2>
-    {{ $descripcion }}
+    {{ $descEstado }}
+    <br>
+    <h2>Idcliente:</h2>
     {{ $idPqrsd }}
-    {{ $correoElectronico }}
+    <br>
+    <h2>CorreoElectronico:</h2>
+    {{ $correo}}
 </body>
 </html>
 

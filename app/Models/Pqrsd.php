@@ -17,7 +17,6 @@ class Pqrsd extends Model
     'tipoPersona',
     'descripcion',
     // 'estado',
-    //'urlPdf',
     ];
 
     protected $guarded = ['idCliente','urlPdf','estado'];

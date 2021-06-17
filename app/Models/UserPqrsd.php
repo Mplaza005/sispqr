@@ -9,5 +9,11 @@ class UserPqrsd extends Model
 {
     use HasFactory;
 
-    protected $table = "user_pqrsd";
+    protected $fillable = [
+        'idCliente',
+        'idPqrsd',
+        'correo',
+        'descEstado',
+        ];
+      protected $table = "user_pqrsd";
 }

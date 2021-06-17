@@ -4,8 +4,6 @@
 
 @section('content')
 
-
-
 <body>
 
 

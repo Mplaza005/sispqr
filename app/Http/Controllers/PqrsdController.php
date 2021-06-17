@@ -44,18 +44,8 @@ class PqrsdController extends Controller
 
     public function index(){
      // Listar las PQRSD
-      
-         $pqrsds =  Pqrsd::orderBy('id', 'desc')->get();
-
-        // $pqrsds =  DB::table('pqrsds')
-        // ->join('clientes', 'pqrsds.idCliente', '=', 'clientes.id')
-        // ->select('pqrsds.*', 'clientes.primerNombre', 'clientes.segundoNombre', 'clientes.numeroIdentificacion', 'clientes.correoElectronico')
-        // ->get();
-        
-        // return $pqrsds;
-        
-         return view('pqrsd.listarPqrsds', compact('pqrsds'));
-       
+     $pqrsds =  Pqrsd::orderBy('id', 'desc')->get();
+     return view('pqrsd.listarPqrsds', compact('pqrsds'));
 
     }
         
@@ -67,7 +57,6 @@ class PqrsdController extends Controller
     public function store(StorePqrsd $request){
       
         $cliente = new Cliente();
-
     
             //Crear una Pqrsd
             $pqrsd = Pqrsd::create($request->all());
@@ -85,7 +74,6 @@ class PqrsdController extends Controller
 
         }
             $pqrsd->save();
-        
             return view('pqrsd.show',compact('pqrsd','cliente'));
             
     }
@@ -144,21 +132,17 @@ class PqrsdController extends Controller
 
     public function sendAnswer(Request $request){
      
-        $userPqrsd= new UserPqrsd();
-        $userPqrsd->idcliente = $request->idCliente;
-        $userPqrsd->idpqrsd = $request->idPqrsd;
-        $userPqrsd->descEstado = $request->descripcion;
+        UserPqrsd::create($request->all());
 
-        $userPqrsd->save();
-
-        $subject = "es lo que me gusta";
-        $for = "mplaza005@gmail.com";
+        $subject = "Respuesta PQRSD";
+        $for = $request->correo;
         Mail::send('emails.RespuestaPqrsd',$request->all(), function($msj) use($subject,$for){
-            $msj->from("arm@gmail.com","NombreQueApareceráComoEmisor");
+          
+            $msj->from("geostigma@gmail.com","Geostigma");
             $msj->subject($subject);
             $msj->to($for);
         });
-        return "enviado";
+        //return "enviado";
         // Mail::to('mplaza005@gmail.com')->send(new RespuestaPqrsd());
 
     }

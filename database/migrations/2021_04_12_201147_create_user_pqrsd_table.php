@@ -18,6 +18,7 @@ class CreateUserPqrsdTable extends Migration
             $table->text('idCliente')->nullable();
             $table->text('idPqrsd')->nullable();
             $table->text('idUser')->nullable();
+            $table->text('correo')->nullable();
             $table->text('descEstado')->nullable();
             $table->timestamps();
         });
