@@ -11,12 +11,13 @@ class Pqrsd extends Model
     // protected $dates = ['created_at'];
 
     protected $fillable = [
+    
     'correoElectronico',
     'esAnonima',
     'tipoPqrsd',
     'tipoPersona',
     'descripcion',
-    // 'estado',
+    
     ];
 
     protected $guarded = ['idCliente','urlPdf','estado'];
@@ -25,4 +26,10 @@ class Pqrsd extends Model
     {
         return $this->belongsTo(Cliente::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
 }

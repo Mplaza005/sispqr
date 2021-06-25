@@ -16,12 +16,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Rutas para la gestion de los formularios//
-// Route::post('login', [PqrsdController::class,'login'])->name('login.login');
-// Route::get('login', [PqrsdController::class,'inicio']);
-// Route::post('login', [PqrsdController::class,'login'])->name('login');
-// Route::get('formularios', [PqrsdController::class,'index'])->name('formulario.index')->middleware('auth');
 
-Route::resource('pqrsds', PqrsdController::class);
+Route::post('login', [PqrsdController::class,'login'])->name('login.login');
+Route::post('logout', [PqrsdController::class,'logout'])->name('login.logout');
+
+
+Route::get('login', [PqrsdController::class,'inicio']);
+Route::post('login', [PqrsdController::class,'login'])->name('login');
+Route::get('formularios', [PqrsdController::class,'index'])->name('formulario.index')->middleware('auth');
+
+Route::resource('pqrsds', PqrsdController::class)->middleware('auth');
 
 //Rutas para contestar pqrsd
 

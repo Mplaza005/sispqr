@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\Pqrsd;
 use App\Models\UserPqrsd;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
@@ -20,26 +21,36 @@ use Illuminate\Support\Facades\Storage;
 class PqrsdController extends Controller
 {   
 
-    // public function inicio(){
-    //     // Sistema Login
-    //     return view('login.form_login');
-    // }
+    public function inicio(){
+        // Sistema Login
+        return view('login.form_login');
+    }
 
-    // public function login(Request $request){
+    public function login(Request $request){
 
-    //     $credentials =request()->only('email','password');
+        $credentials =request()->only('email','password');
 
-    //     if (Auth::attempt($credentials)){
+        if (Auth::attempt($credentials)){
 
-    //         request()->session()->regenerate();
-    //         return redirect()->route('pqrsds.index');
-    //         // return redirect('formulario');
+            request()->session()->regenerate();
+            return redirect()->route('pqrsds.index');
+            
 
-    //     }
+        }
 
-    //     return view('login.form_login');
+        return view('login.form_login');
 
-    // }    
+    } 
+    
+    public function logout(Request $request){
+
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        
+        return redirect()->route('login');
+
+    }   
 
 
     public function index(){
@@ -119,8 +130,9 @@ class PqrsdController extends Controller
 
     public function answer(Pqrsd $pqrsd){
         //por optimizar
-        $userPqrsd = new UserPqrsd();
         
+        // $userPqrsd = new UserPqrsd();
+      
         if($cliente=Cliente::find($pqrsd->idCliente))
         {
          return view('pqrsd.answer',compact('pqrsd','cliente'));
@@ -132,16 +144,17 @@ class PqrsdController extends Controller
 
     public function sendAnswer(Request $request){
      
-        UserPqrsd::create($request->all());
+         $user =User::find(auth()->user()->id);
+         $user->pqrsds()->attach($request->idPqrsd,['correo'=>$request->correo,'descEstado'=>$request->descEstado]);
 
-        $subject = "Respuesta PQRSD";
-        $for = $request->correo;
-        Mail::send('emails.RespuestaPqrsd',$request->all(), function($msj) use($subject,$for){
+        // $subject = "Respuesta PQRSD";
+        // $for = $request->correo;
+        // Mail::send('emails.RespuestaPqrsd',$request->all(), function($msj) use($subject,$for){
           
-            $msj->from("geostigma@gmail.com","Geostigma");
-            $msj->subject($subject);
-            $msj->to($for);
-        });
+        //     $msj->from("geostigma@gmail.com","Geostigma");
+        //     $msj->subject($subject);
+        //     $msj->to($for);
+        // });
         //return "enviado";
         // Mail::to('mplaza005@gmail.com')->send(new RespuestaPqrsd());
 
