@@ -24,7 +24,7 @@
      <input type="password" name="password" class="form-control" />
     </div>
     <div class="form-group">
-    <button class="btn btn-primary mb-3" type="submit">Enviar</button>
+    <button class="btn btn-primary mb-3" type="submit">Send</button>
     </div>
 </form>
   </div>
